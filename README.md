@@ -9,20 +9,23 @@ A simple security auditing tool that checks if services on your machine are expo
 3. **Tests external reachability** - Checks if services are actually accessible from the internet
 
 ## Sample Output
+
 ========================================
-  Internet Exposure Checker v1.0
+Internet Exposure Checker v1.0
 ========================================
 
-Your Public IP: 2001:f40:90f:2ab:1cc3:7863:9851:d47
+Your Public IP: [YOUR_PUBLIC_IP_HERE]
 
 Listening ports:
 LISTEN 0 0 0.0.0.0:22 0.0.0.0:* users:(("sshd",pid=288,fd=6))
-LISTEN 0 0 *:22 *:* users:(("sshd",pid=288,fd=7))
+LISTEN 0 0 *:22 : users:(("sshd",pid=288,fd=7))
 
 Testing port 22:
-nc: connect to 2001:f40:90f:2ab:1cc3:7863:9851:d47 port 22 (tcp) failed: Connection refused
+nc: connect to [YOUR_PUBLIC_IP_HERE] port 22 (tcp) failed: Connection refused
 
-Done. 
+Done.
+
+
 ## Security Analysis
 
 The tool identified:
@@ -86,5 +89,22 @@ chmod +x exposure_checker.sh
 ./exposure_checker.sh
 
 
+Use Cases
 
-eof
+System Administrators - Audit new servers before deployment
+Security Analysts - Quick exposure checks during assessments
+Developers - Ensure dev environments aren't accidentally exposed
+Penetration Testers - Initial reconnaissance tool
+Limitations
+
+Tests only specific ports (customizable)
+Requires external reachability (works behind NAT)
+Doesn't perform deep vulnerability scans
+Future Improvements
+
+Test multiple common ports (80, 443, 3306, etc.)
+Add color-coded output for better readability
+Support IPv4 and IPv6 detection
+Add nmap integration for comprehensive scanning
+
+Disclaimer: This tool is for educational and authorized testing purposes only.
